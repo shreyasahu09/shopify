@@ -36,6 +36,12 @@ app.get('/', (req,res) => {
         message: "Hi!!! WElCOME TO OUR ECOMMERCE APP"
     })
 })
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Catch-all handler for any request that doesn't match the above routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
 //PORT
 const PORT = process.env.PORT || 8080;
 //by chance agar process/env file mai koi dikkat ho toh by default port 8080 use kro
